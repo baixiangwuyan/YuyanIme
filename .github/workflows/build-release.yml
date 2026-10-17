@@ -24,7 +24,7 @@ jobs:
 
       - name: Build Release APK (R8) - arm64
         run: |
-          ./gradlew :app:assembleOfflineRelease -PuniversalAbi=false
+          ./gradlew :app:assembleOfflineRelease
           mkdir -p artifacts
           cp app/build/outputs/apk/offline/release/*.apk artifacts/yuyan-arm64-release.apk
 
@@ -33,14 +33,3 @@ jobs:
         with:
           name: yuyan-arm64-release
           path: artifacts/yuyan-arm64-release.apk
-
-      - name: Build Release APK (R8) - universal
-        run: |
-          ./gradlew :app:assembleOfflineRelease -PuniversalAbi=true
-          cp app/build/outputs/apk/offline/release/*.apk artifacts/yuyan-universal-release.apk
-
-      - name: Upload APK universal
-        uses: actions/upload-artifact@v4
-        with:
-          name: yuyan-universal-release
-          path: artifacts/yuyan-universal-release.apk
