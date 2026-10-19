@@ -72,8 +72,8 @@ android {
     buildTypes {
         release {
             // 混淆（正式版开启，迭代期关闭跑快版）
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             applicationIdSuffix  ".release"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.cfg'
             signingConfig signingConfigs.release
