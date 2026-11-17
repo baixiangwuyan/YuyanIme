@@ -1,0 +1,23 @@
+name: Update yuyansdk pointer
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+      - name: Point yuyansdk at new commit
+        run: |
+          cd yuyansdk
+          git fetch origin
+          git checkout 474495ad4eca2b5d1623da296c5de0dfe5285741
+          cd ..
+          git config user.name "baixiangwuyan"
+          git config user.email "jiaodai369@163.com"
+          git add yuyansdk
+          git commit -m "更新 yuyansdk 子模块：修复键盘不弹+效果兜底" || echo "nothing to commit"
+          git push origin HEAD:master
