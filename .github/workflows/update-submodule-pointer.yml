@@ -1,0 +1,23 @@
+name: Update yuyansdk pointer
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Update yuyansdk pointer
+        run: |
+          cd yuyansdk
+          git checkout 2ac059659217e9e354559417c91c07a218551ee4
+          cd ..
+          git config user.name baixiangwuyan
+          git config user.email jiaodai369@163.com
+          git add yuyansdk
+          git commit -m "花花：更新 yuyansdk 指针到 2ac0596（P30底边+语法模型不退出）"
+          git push
